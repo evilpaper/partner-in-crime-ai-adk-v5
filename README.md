@@ -1,6 +1,6 @@
 # Partner in Crime - AI SDK v5 Crash Course by Matt Pocock
 
-This is a companion repository for the AI SDK v5 Crash Course . All credit goes to Matt Pocock.
+This is a companion repository for the AI SDK v5 Crash Course. All credit goes to Matt Pocock.
 
 ## Course Content
 
