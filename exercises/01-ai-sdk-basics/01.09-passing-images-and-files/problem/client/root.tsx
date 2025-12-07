@@ -5,6 +5,7 @@ import { ChatInput, Message, Wrapper } from './components.tsx';
 import './tailwind.css';
 
 const App = () => {
+  // Defaults to the transport’s API endpoint: /api/chat, see https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-chat#usechat
   const { messages, sendMessage } = useChat({});
 
   const [input, setInput] = useState(
@@ -36,17 +37,16 @@ const App = () => {
           );
           const file = formData.get('file') as File;
 
-          // TODO: figure out how to pass the file
-          // _as well as the text_ to the
-          // /api/chat route!
-
-          // NOTE: You have a helpful function below
-          // called fileToDataURL that you can use to
-          // convert the file to a data URL. This
-          // will be useful!
+          // parts and text are mutually exclusive, we cannot use both.
           sendMessage({
-            // NOTE: 'parts' will be useful
-            text: input,
+            parts: [
+              { type: 'text', text: input },
+              {
+                type: 'file',
+                url: await fileToDataURL(file),
+                mediaType: file.type,
+              },
+            ],
           });
 
           setInput('');
